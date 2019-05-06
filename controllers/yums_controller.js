@@ -5,7 +5,14 @@ const yum = require("../models/yum.js");
 
 
 router.get("/", function(req, res){
-
+    yum.selectAll(function(data){
+        console.log(data);
+        var hbrsObj = {
+            yums: data
+        };
+        console.log(hbrsObj);
+        res.render("index",hbrsObj);
+    });
 });
 
 router.post("/api/yums", function(req, res){

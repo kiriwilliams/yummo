@@ -1,6 +1,6 @@
-CREATE DATABASE yummo;
+CREATE DATABASE yummo_db;
 
-USE  yummo;
+USE  yummo_db;
 
 CREATE TABLE yums(
     id INTEGER(11) AUTO_INCREMENT PRIMARY KEY,

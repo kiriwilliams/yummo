@@ -1,0 +1,9 @@
+CREATE DATABASE yummo;
+
+USE  yummo;
+
+CREATE TABLE yums(
+    id INTEGER(11) AUTO_INCREMENT PRIMARY KEY,
+    yum_name VARCHAR(100) NOT NULL,
+    devoured BOOLEAN DEFAULT 0
+);

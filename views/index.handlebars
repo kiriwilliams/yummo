@@ -1,0 +1,22 @@
+<div class="container">
+<h1>Fantastic Yums!</h1>
+
+<h2>Yums yet to eat!</h2>
+
+<ul>
+  {{#each yums}}
+    <li>{{yum_name}}</li>
+  {{/each}}
+</ul>
+
+{{!-- <h2>Yums previously devoured!</h2>
+
+<ul>
+  {{#each cats}}
+    {{#if sleepy}}
+      {{> cats/cat-block sleep=false}}
+    {{/if}}
+  {{/each}}
+</ul> --}}
+
+</div>

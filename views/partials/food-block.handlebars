@@ -1,25 +1,26 @@
 <li class="yum" id={{id}}>
     {{yum_name}}
-    <button class="delete">EAT</button>
+    <button class="eat">EAT</button>
 </li>
 <script>
 
-    $(".delete").on("click", function () {
+    $(".eat").on("click", function () {
         console.log("hi");
         console.log(this);
         
-        var id = $(this).parent().attr("id");
+        var id = $(this).parent().attr("id").trim();
         console.log(id);
 
-        {{!-- $.ajax("/api/yums",{
-            type: "POST",
-            data: eatenFood
+        $.ajax({
+            url: "/api/yums",
+            method: "PUT",
+            data: id
         }).then(
             function(){
                 console.log("added new food");
-                location.reload();
+               
             }
-        ) --}}
+        )
 
     });
 </script>

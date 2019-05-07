@@ -21,4 +21,8 @@ router.post("/api/yums", function(req, res){
     });
 });
 
+router.update("/api/yums", function(req,res){
+    yum.update([ ])
+})
+
 module.exports = router;

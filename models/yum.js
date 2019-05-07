@@ -11,8 +11,8 @@ var yum = {
             callback(res);
         });
     },
-    updateOne: function(row,key,value, callback){
-        orm.updateOne("yums",row,key,value, function(res){
+    updateOne: function(id,callback){
+        orm.updateOne(id, function(res){
             callback(res);
         });
     }

@@ -6,23 +6,26 @@ const yum = require("../models/yum.js");
 
 router.get("/", function(req, res){
     yum.selectAll(function(data){
-        console.log(data);
+        // console.log(data);
         var hbrsObj = {
             yums: data
         };
-        console.log(hbrsObj);
+        // console.log(hbrsObj);
         res.render("index",hbrsObj);
     });
 });
 
 router.post("/api/yums", function(req, res){
-    yum.create(["name"],[req.body.name], function(result){
+    console.log("post" + JSON.stringify(req.body));
+    yum.insertOne([req.body.yum_name], function(result){
         res.json({ id: result.insertId });
     });
 });
 
-// router.update("/api/yums", function(req,res){
-//     yum.update([ ])
-// })
+router.put("/api/yums", function(req,res){
+    yum.updateOne([req.body.id], function(result){
+        console.log(result);
+    })
+})
 
 module.exports = router;

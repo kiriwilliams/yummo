@@ -11,18 +11,18 @@ var orm = {
 
     },
     insertOne: function(table,name){
-        var queryString = "INSERT INTO ? (?) VALUES (?)";
-        connection.query(queryString,[table,"yum_name",name],function(err, result){
+        var queryString = "INSERT INTO yums (yum_name) VALUES (?)";
+        connection.query(queryString,[name],function(err, result){
             if(err) throw err;
             console.log(result);
         });
     },
-    updateOne: function(table,row,key,value){
-        var queryString = "UPDATE ? SET ? = ? WHERE id = ?";
-        connection.query(queryString,[table,key, value, row]), function(err, result){
+    updateOne: function(id){
+        var queryString = "UPDATE yums SET devoured = true WHERE id = ?";
+        connection.query(queryString,[id], function(err, result){
             if(err) throw err;
             console.log(result);
-        };
+        });
     }
 };
 

@@ -1,21 +1,16 @@
-const orm = require("../config/orms.js");
-
-var yum = {
-    selectAll: function(callback){
-        orm.selectAll("yums", function(res){
-            callback(res);
-        });
-    },
-    insertOne: function(name, callback){
-        orm.insertOne("yums", name, function(res){
-            callback(res);
-        });
-    },
-    updateOne: function(id,callback){
-        orm.updateOne(id, function(res){
-            callback(res);
-        });
-    }
-};
-
-module.exports = yum;
+module.exports = function(sequelize, DataTypes){
+    var Yum = sequelize.define("Yum",{
+        yum_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        devoured: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        }
+    });
+    return Yum;
+}

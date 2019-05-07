@@ -17,7 +17,28 @@
         <h1>Fantastic Yums!</h1>
     </div>
     {{{body}}}
-    
+    <script>
+
+        $(".eat").on("click", function () {
+            console.log("hi");
+            console.log(this);
+
+            var id = $(this).parent().attr("id").trim();
+            console.log(id);
+
+            $.ajax({
+                url: "/api/yums",
+                method: "PUT",
+                data: id
+            }).then(
+                function () {
+                    console.log("added new food");
+                    location.reload();
+                }
+            );
+
+        });
+    </script>
 </body>
 
 </html>

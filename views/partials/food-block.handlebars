@@ -2,25 +2,3 @@
     {{yum_name}}
     <button class="eat">EAT</button>
 </li>
-<script>
-
-    $(".eat").on("click", function () {
-        console.log("hi");
-        console.log(this);
-        
-        var id = $(this).parent().attr("id").trim();
-        console.log(id);
-
-        $.ajax({
-            url: "/api/yums",
-            method: "PUT",
-            data: id
-        }).then(
-            function(){
-                console.log("added new food");
-               
-            }
-        )
-
-    });
-</script>

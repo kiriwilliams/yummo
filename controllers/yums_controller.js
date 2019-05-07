@@ -1,39 +1,30 @@
-const express = require("express");
-const router = express.Router();
-const yum = require("../models/yum.js");
+var db = require("../models");
 
+module.exports = function(app){
 
-
-router.get("/", function(req, res){
-    yum.selectAll(function(data){
-        // console.log(data);
-        var hbrsObj = {
-            yums: data
-        };
-        // console.log(hbrsObj);
-        res.render("index",hbrsObj);
+    //GET route
+    app.get("/api/yums", function(req,res){
+        db.Yum.findAll({}).then(function(result){
+            res.json(result);
+        });
     });
-});
 
-router.post("/api/yums", function(req, res){
-    console.log("post" + JSON.stringify(req.body));
-    yum.insertOne([req.body.yum_name], function(result){
-        res.json({ id: result.insertId });
-        
+    //POST
+    app.post("/api/yums", function(req,res){
+        db.Yum.create({
+            yum_name: req.body.name
+        });
     });
-    res.redirect("/");
-});
 
-router.put("/api/yums", function(req,res){
-    yum.updateOne([req.body.id], function(result){
-        if (result.changedRows == 0) {
-            // If no rows were changed, then the ID must not exist, so 404
-            return res.status(404).end();
-          } else {
-            res.status(200).end();
-          }
+    //PUT
+    app.put("/api/yums", function(req,res){
+        db.Yum.update({
+            devoured: true,
+            where: {
+                id: req.body.id
+            }           
+        }).then(function(result){
+            res.json(result);
+        });
     });
-    res.redirect("/");
-});
-
-module.exports = router;
+}

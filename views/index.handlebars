@@ -9,7 +9,7 @@
       {{/unless}}
       {{/each}}
     </ul>
-    <input type="text" name="newFood"><button id="submit">Add Food</button>
+    <input type="text" name="newFood" id="newFood"><button id="submit">Add Food</button>
   </div>
 
   <div class="col-lg-6 col-md-7 col-sm-12">
@@ -24,3 +24,14 @@
   </div>
 
 </div>
+<script>
+    $("#submit").on("click", function(){
+        console.log("clicked susbmit");
+        $.post("/api/yums",{
+          yum_name: $("#newFood").val().trim()
+        }, function(data){
+         
+          console.log("hi");
+        });
+    });
+</script>

@@ -1,3 +1,23 @@
-<li>
+<li class="yum">
     {{yum_name}}
+    <button class="delete">EAT</button>
 </li>
+<script>
+
+    $(".delete").on("click", function () {
+        console.log("hi");
+        console.log(this);
+        $(this).parent().remove();
+
+        $.ajax("/api/yums",{
+            type: "POST",
+            data: newFood
+        }).then(
+            function(){
+                console.log("added new food");
+                location.reload();
+            }
+        )
+
+    });
+</script>

@@ -1,9 +1,11 @@
 const express = require("express");
 require("dotenv").config();
 const PORT = process.env.PORT;
-
+const db = require("./models");
 const app = express();
 
+
+// Static directory
 app.use(express.static("public"));
 
 // Parse request body as JSON
@@ -21,6 +23,8 @@ var routes = require("./controllers/yums_controller.js");
 
 app.use(routes);
 
-app.listen(PORT, function() {
-  console.log("App now listening at localhost:" + PORT);
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App now listening at localhost:" + PORT);
+  });
 });

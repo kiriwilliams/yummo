@@ -1,22 +1,25 @@
-<div class="container">
-<h1>Fantastic Yums!</h1>
+<div class="container row">
+  <div class="col-lg-6 col-md-5 col-sm-12">
+    <h2>Yums yet to eat!</h2>
 
-<h2>Yums yet to eat!</h2>
+    <ul>
+      {{#each yums}}
+      {{#unless devoured}}
+      {{> food-block}}
+      {{/unless}}
+      {{/each}}
+    </ul>
+  </div>
 
-<ul>
-  {{#each yums}}
-    {{#unless devoured}}
-        {{> food-block}}
-    {{/unless}}
-  {{/each}}
-</ul>
+  <div class="col-lg-6 col-md-7 col-sm-12">
+    <h2>Yums previously devoured!</h2>
+    <ul>
+      {{#each yums}}
+      {{#if devoured}}
+      {{> food-block}}
+      {{/if}}
+      {{/each}}
+    </ul>
+  </div>
 
-<h2>Yums previously devoured!</h2>
-<ul>
-    {{#each yums}}
-        {{#if devoured}}
-            {{> food-block}}
-        {{/if}}
-    {{/each}}
-</ul>
 </div>

@@ -29,7 +29,9 @@
             $.ajax({
                 url: "/api/yums",
                 method: "PUT",
-                data: id
+                data: {
+                    "id" : id
+                }
             }).then(
                 function () {
                     console.log("added new food");

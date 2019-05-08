@@ -1,11 +1,10 @@
 <div class="container row">
   <div class="col-lg-6 col-md-5 col-sm-12">
     <h2>Yums yet to eat!</h2>
-
     <ul id="uneaten">
-      {{#each yums}}
+      {{#each food}}
       {{#unless devoured}}
-      {{> food-block}}
+      {{> uneaten-food-block}}
       {{/unless}}
       {{/each}}
     </ul>
@@ -15,9 +14,9 @@
   <div class="col-lg-6 col-md-7 col-sm-12">
     <h2>Yums previously devoured!</h2>
     <ul id="eaten">
-      {{#each yums}}
+      {{#each food}}
       {{#if devoured}}
-      {{> food-block}}
+      {{> eaten-food-block}}
       {{/if}}
       {{/each}}
     </ul>
@@ -26,8 +25,7 @@
 </div>
 <script>
   $("#submit").on("click", function () {
-    console.log("clicked susbmit");
-   
+
     $.post("/api/yums", {
       yum_name: $("#newFood").val().trim()
    

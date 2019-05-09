@@ -1,39 +1,42 @@
-const express = require("express");
-const router = express.Router();
-const yum = require("../models/yum.js");
+var db = require("../models");
+var express = require("express");
+var router = express();
 
 
 
-router.get("/", function(req, res){
-    yum.selectAll(function(data){
+//GET route
+router.get("/", function (req, res) {
+    db.Yum.findAll({}).then(function (data) {
         // console.log(data);
-        var hbrsObj = {
-            yums: data
-        };
-        // console.log(hbrsObj);
-        res.render("index",hbrsObj);
+        var hbrsobj = {
+            food: data
+        }
+        res.render("index", hbrsobj);
     });
 });
 
-router.post("/api/yums", function(req, res){
-    console.log("post" + JSON.stringify(req.body));
-    yum.insertOne([req.body.yum_name], function(result){
-        res.json({ id: result.insertId });
-        
+
+// POST
+router.post("/api/yums", function (req, res) {
+    db.Yum.create({
+        yum_name: req.body.yum_name
+    }).then(function (result) {
+        res.json(result);
     });
-    res.redirect("/");
 });
 
-router.put("/api/yums", function(req,res){
-    yum.updateOne([req.body.id], function(result){
-        if (result.changedRows == 0) {
-            // If no rows were changed, then the ID must not exist, so 404
-            return res.status(404).end();
-          } else {
-            res.status(200).end();
-          }
-    });
-    res.redirect("/");
+// PUT
+router.put("/api/yums", function (req, res) {
+    console.log(req.body);
+    db.Yum.update({
+        devoured: true
+    }, {
+            where: {
+                id: req.body.id
+            }
+        }).then(function (result) {
+            res.json(result);
+        });
 });
 
 module.exports = router;

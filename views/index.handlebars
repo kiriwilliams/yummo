@@ -11,24 +11,65 @@
     <input type="text" name="newFood" id="newFood"><button id="submit">Add Food</button>
   </div>
 
-  <div class="col-lg-6 col-md-7 col-sm-12">
-    <h2>Yums previously devoured!</h2>
-    <ul id="eaten">
-      {{#each food}}
-      {{#if devoured}}
-      {{> eaten-food-block}}
-      {{/if}}
-      {{/each}}
-    </ul>
+  {{!-- <div class="col-lg-6 col-md-7 col-sm-12">
+    <h2>Yums previously devoured!</h2> --}}
+  <div class="friend" id="friend">
+
+    <div class="stomach">
+
+        {{#each food}}
+        {{#if devoured}}
+        {{> eaten-food-block}}
+        {{/if}}
+        {{/each}}
+      </div>
+    <div class="friend head">
+        <div id="eyes">
+          <div class="friend eye left">
+            <div class="pupil"></div>
+          </div>
+          <div class="friend eye right">
+            <div class="pupil"></div>
+          </div>
+        </div>
+
+
+        <div class="firend lip upper-lip"></div>
+        <div class="friend mouth">
+          <div class="teeth upper-teeth">
+            <div class="tooth upper-tooth"></div>
+            <div class="tooth upper-tooth"></div>
+            <div class="tooth upper-tooth"></div>
+            <div class="tooth upper-tooth"></div>
+          </div>
+          <div class="teeth bottom-teeth">
+            <div class="tooth bottom-tooth"></div>
+            <div class="tooth bottom-tooth"></div>
+            <div class="tooth bottom-tooth"></div>
+            <div class="tooth bottom-tooth"></div>
+            <div class="tooth bottom-tooth"></div>
+          </div>
+        </div>
+        <div class="friend lip lower-lip"></div>
+      </div>
+    <div class="friend leg">
+      <div class="friend foot"></div>
+    </div>
+    <div class="friend leg right">
+      <div class="friend foot right"></div>
+    </div>
+
   </div>
 
+  {{!-- </div> --}}
 </div>
+
 <script>
   $("#submit").on("click", function () {
 
     $.post("/api/yums", {
       yum_name: $("#newFood").val().trim()
-   
+
     }).then(function (data) {
 
       location.reload();
